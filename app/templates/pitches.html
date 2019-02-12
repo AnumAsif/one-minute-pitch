@@ -10,7 +10,6 @@
       <form >
         <p class= pitchForm>
           <textarea name="add_pitch"  placeholder="Add a new pitch" rows="6" cols="40" class="form-control"></textarea>
-          <br>
           <input type="submit" value="Pitch" class="btn btn-success btn-lg pitchBtn">
         </p>
       </form>
@@ -19,18 +18,30 @@
 
       {% for pitch in pitches%}
       <br>
-      <p class="pitchMsg">" <strong>{{pitch.message}}</strong> "</p>
-      <p>Posted on: {{pitch.posted}}</p>
-      <p>UpVotes: {{pitch.upVotes}}</p>
-      <p>DownVotes: {{pitch.downVotes}}</p>
-      <p><button type="submit" class="btn btn-default btn-sm">
-          <a href="{{url_for('main.upVote', pitch_id = pitch.id, upvote = pitch.upVotes) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-        </button>
-        <button type="submit" class="btn btn-default btn-sm">
-          <a href="{{url_for('main.downVote', pitch_id = pitch.id, downvote = pitch.downVotes) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-        </button>
-      </p>
-    
+      <div class="card">
+         <div class="container card-container">
+             <p class="pitchMsg">" <strong>{{pitch.message}}</strong> "</p>
+             <p>Posted on: {{pitch.posted}}</p>
+             <p>UpVotes: {{pitch.upVotes}}</p>
+             <p>DownVotes: {{pitch.downVotes}}</p>
+             <p><button type="submit" class="btn btn-default btn-sm">
+                 <a href="{{url_for('main.upVote', pitch_id = pitch.id, upvote = pitch.upVotes) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+               </button>
+               <button type="submit" class="btn btn-default btn-sm">
+                 <a href="{{url_for('main.downVote', pitch_id = pitch.id, downvote = pitch.downVotes) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+               </button>
+             </p>
+             <form >
+               <p>
+                 <input type="text" name="comment" value="comment"placeholder="What do you think about this pitch??" class="form-control" id="comment">
+                 <input type="submit" value="Comment" class="btn btn-success btn-sm">
+               </p>
+             </form>
+        </div>
+      </div>
+
+
+
       {% endfor%}
     </div>
     <div class="col-md-2">
