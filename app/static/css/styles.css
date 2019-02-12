@@ -58,3 +58,7 @@ h1,h2{
 .form-control, .pitchBtn{
   font-size: 30px;
 }
+.pitchMsg{
+  color:#51895F;
+  font-size:30px;
+}

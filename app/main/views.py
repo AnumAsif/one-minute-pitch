@@ -1,10 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Category, User, Pitch
-# from .forms import ReviewForm,UpdateProfile
 from .. import db
 from flask_login import login_required, current_user
-# import markdown2
+import datetime
+import markdown2
 
 @main.route('/')
 def index():
@@ -24,8 +24,13 @@ def index():
 
     return render_template('index.html',categories = categories)
 
+def upVotes(pitch_id,upVotes):
+    upVotes = upVotes+1
+    pitch = Pitch.query.filter_by(id =pitch_id).update({"upVotes":upVotes})
+    db.session.commit()
+
+
 @main.route('/pitch/<category_id>', methods = ["GET","POST"])
-@login_required
 def pitch(category_id):
     category = Category.query.filter(Category.id == category_id).first()
     categoryName = category.name
@@ -34,26 +39,6 @@ def pitch(category_id):
         user = User.query.filter(User.id == current_user.id).first()
         user_id=user.id
         pitch = Pitch(message = add_pitch, category_id=category_id, user_id = user_id )
-        db.session.add(pitch)
-        db.session.commit()
-        message = "Added successfully"
-        pitches = Pitch.query.filter(Pitch.category_id == category_id).all()
-        return render_template('pitches.html', pitches = pitches, category= categoryName, message = message)
-    pitches = Pitch.query.filter(Pitch.category_id == category_id).all()
-    return render_template('pitches.html', pitches = pitches, category= categoryName)
-
-
-
-@main.route('/pitch/<category_id>', methods=["GET","POST"])
-@login_required
-def new_pitch(category_id):
-    category = Category.query.filter(Category.id == category_id).first()
-    categoryName = category.name
-    message= request.args.get('add_pitch')
-    if message:
-        user_id = User.query.filter(User.id == current_user.id).first()
-        pitch = Pitch(message=message, category_id=category_id,user_id = user_id)
-        message = user_id+message+category_id
         db.session.add(pitch)
         db.session.commit()
         message = "Added successfully"

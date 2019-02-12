@@ -16,11 +16,14 @@
       </form>
       <p>{{message}}</p>
       {%endif%}
-      {% for pitch in pitches%}
-      <p>{{pitch.message}}</p>
-      <p>Posted on: <strong>{{pitch.posted}}</strong></p>
 
-      <p><button type="button" class="btn btn-default btn-sm">
+      {% for pitch in pitches%}
+      <br>
+      <p class="pitchMsg">" <strong>{{pitch.message}}</strong> "</p>
+      <p>Posted on: {{pitch.posted}}</p>
+      <p>UpVotes: {{pitch.upVotes}}</p>
+      <p>DownVotes: {{pitch.downVotes}}</p>
+      <p><button type="button" class="btn btn-default btn-sm" onclick = "upVotes({{pitch.id}},{{pitch.upVotes}})">
           <span class="glyphicon glyphicon-thumbs-up"></span>
         </button>
         <button type="button" class="btn btn-default btn-sm">
