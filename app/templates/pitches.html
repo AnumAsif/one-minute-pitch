@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="container-fluid mainpage">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 pitch">
+      <h1>{{category}}:</h1>
+      {% if current_user.is_authenticated %}
+      <form >
+        <p class= pitchForm>
+          <textarea name="add_pitch"  placeholder="Add a new pitch" rows="6" cols="40" class="form-control"></textarea>
+          <br>
+          <input type="submit" value="Pitch" class="btn btn-success btn-lg pitchBtn">
+        </p>
+      </form>
+      <p>{{message}}</p>
+      {%endif%}
+      {% for pitch in pitches%}
+      <p>{{pitch.message}}</p>
+      <p>Posted on: <strong>{{pitch.posted}}</strong></p>
+
+      <p><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+        </button>
+      </p>
+
+      {% endfor%}
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
+{%endblock%}
