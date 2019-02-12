@@ -30,14 +30,7 @@
           <a href="{{url_for('main.downVote', pitch_id = pitch.id, downvote = pitch.downVotes) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
         </button>
       </p>
-      <form >
-        <p class= pitchForm>
-          <textarea name="add_pitch"  placeholder="Add a new pitch" rows="6" cols="40" class="form-control"></textarea>
-          <br>
-          <input type="submit" value="Pitch" class="btn btn-success btn-lg pitchBtn">
-        </p>
-      </form>
-
+    
       {% endfor%}
     </div>
     <div class="col-md-2">
