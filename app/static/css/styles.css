@@ -1,0 +1,60 @@
+body {
+  background-image: url("../photos/background_pic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 50px;
+
+}
+p{
+  color:#81817B;
+  font-size: 25px;
+  font-family: 'Rancho', cursive;
+}
+h1,h2{
+  font-family: 'Aclonica', sans-serif;
+}
+.login {
+  /* background-color: white;
+  opacity:0.5; */
+  color: white;
+  width:100%;
+  height:100px;
+}
+.navbar{
+  /* padding-top: 400px; */
+  font-size: 20px;
+  height:70px;
+  padding-top: 10px;
+
+}
+
+.dropdown-item{
+  font-size: 20px;
+  padding-top:5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  text-align: center;
+}
+.welcome{
+  background-color: #F4F4EE;
+  /* opacity:0.8; */
+}
+.add_category,.select_category{
+  display: none;
+}
+.login,.register{
+  margin-top:70px;
+  background-color:#ADD195      ;
+  height: auto;
+  border-radius: 10px;
+  padding:30px;
+  box-shadow: 10px 8px 6px -6px black;
+}
+.pitch{
+  background-color: #F4F4EE;
+  padding:20px;
+  border-radius: 15px;
+}
+.form-control, .pitchBtn{
+  font-size: 30px;
+}
