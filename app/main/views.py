@@ -24,10 +24,6 @@ def index():
 
     return render_template('index.html',categories = categories)
 
-def upVotes(pitch_id,upVotes):
-    upVotes = upVotes+1
-    pitch = Pitch.query.filter_by(id =pitch_id).update({"upVotes":upVotes})
-    db.session.commit()
 
 
 @main.route('/pitch/<category_id>', methods = ["GET","POST"])
@@ -47,9 +43,36 @@ def pitch(category_id):
     pitches = Pitch.query.filter(Pitch.category_id == category_id).all()
     return render_template('pitches.html', pitches = pitches, category= categoryName)
 
+@main.route('/pitch/upVote/<pitch_id>/<int:upvote>', methods = ["GET","POST"])
+@login_required
+def upVote(pitch_id,upvote):
+    upvote = upvote+1
+    pitch = Pitch.query.filter_by(id =pitch_id).update({"upVotes":upvote})
+    db.session.commit()
+    pitch = Pitch.query.filter_by(id =pitch_id).first()
+    category_id = pitch.category_id
+    category = Category.query.filter(Category.id == category_id).first()
+    categoryName = category.name
+    pitches = Pitch.query.filter(Pitch.category_id == category_id).all()
+    return redirect(url_for('main.pitch',category_id=category_id))
+
+@main.route('/pitch/downVote/<pitch_id>/<int:downvote>', methods = ["GET","POST"])
+@login_required
+def downVote(pitch_id,downvote):
+    downvote = downvote+1
+    pitch = Pitch.query.filter_by(id =pitch_id).update({"downVotes":downvote})
+    db.session.commit()
+    pitch = Pitch.query.filter_by(id =pitch_id).first()
+    category_id = pitch.category_id
+    category = Category.query.filter(Category.id == category_id).first()
+    categoryName = category.name
+    pitches = Pitch.query.filter(Pitch.category_id == category_id).all()
+    return redirect(url_for('main.pitch',category_id=category_id))
+
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
+
     if user is None:
         abort(404)
 
