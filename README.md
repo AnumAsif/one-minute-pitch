@@ -60,7 +60,7 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 Please feel free to contact me if you have any suggestion for me to improve this website.
 - Email: anum@cockar.com
 ## Link to live website
-
+- [One Minute Pitch](https://pitch-one-minute.herokuapp.com/)
 ### License
 *MIT*
 Copyright (c) 2018 **ANUM ASIF**
